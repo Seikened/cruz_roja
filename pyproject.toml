@@ -1,0 +1,18 @@
+[project]
+name = "cruz-roja"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11.11"
+dependencies = [
+    "colorstreak>=2.1.3",
+    "easyocr>=1.7.2",
+    "fastapi>=0.128.0",
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.1",
+    "opencv-python>=4.13.0.90",
+    "polars>=1.37.1",
+    "pydantic>=2.12.5",
+    "scikit-learn>=1.8.0",
+    "whatsapp-toolkit>=1.9.2",
+]
