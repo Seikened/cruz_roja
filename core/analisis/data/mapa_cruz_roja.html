@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_e90c12fb995c0be0e73a7d7b8469db30 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_e90c12fb995c0be0e73a7d7b8469db30" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_e90c12fb995c0be0e73a7d7b8469db30 = L.map(
+                "map_e90c12fb995c0be0e73a7d7b8469db30",
+                {
+                    center: [21.1221, -101.6826],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_00b18cf76020d3ba361df9d480d5dfe6 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_00b18cf76020d3ba361df9d480d5dfe6.addTo(map_e90c12fb995c0be0e73a7d7b8469db30);
+        
+    
+            var marker_e21909e77ca63869ef0ddbfe1e06e9eb = L.marker(
+                [21.1482801, -101.6215694],
+                {
+}
+            ).addTo(map_e90c12fb995c0be0e73a7d7b8469db30);
+        
+    
+            var icon_18f713d93b35a517a11c83679a6b5756 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_86d79d48ccc6a7ee2f1374cbe57111a0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e4d3658fe4bffd22c71f0779167130bc = $(`<div id="html_e4d3658fe4bffd22c71f0779167130bc" style="width: 100.0%; height: 100.0%;"><b>HAYDEE MEDINA</b><br>🛣️ FRESNO DE MEDINA 444<br>🏘️ LOMAS DE MEDINA</div>`)[0];
+                popup_86d79d48ccc6a7ee2f1374cbe57111a0.setContent(html_e4d3658fe4bffd22c71f0779167130bc);
+            
+        
+
+        marker_e21909e77ca63869ef0ddbfe1e06e9eb.bindPopup(popup_86d79d48ccc6a7ee2f1374cbe57111a0)
+        ;
+
+        
+    
+    
+                marker_e21909e77ca63869ef0ddbfe1e06e9eb.setIcon(icon_18f713d93b35a517a11c83679a6b5756);
+            
+    
+            var marker_d3b3ead93af3609de2d623708a373f50 = L.marker(
+                [21.069958, -101.6654839],
+                {
+}
+            ).addTo(map_e90c12fb995c0be0e73a7d7b8469db30);
+        
+    
+            var icon_eca4cb85ab5794dfb936f25c6ddb2511 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e939ea042a11fb5d99e1b5d3f65027c5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f29b4cac27a11c44b45e6c249587d8be = $(`<div id="html_f29b4cac27a11c44b45e6c249587d8be" style="width: 100.0%; height: 100.0%;"><b>DIEGO ESCOBEDO</b><br>🛣️ FRANCISCO VILLA<br>🏘️ AMPLIACION LEON 1</div>`)[0];
+                popup_e939ea042a11fb5d99e1b5d3f65027c5.setContent(html_f29b4cac27a11c44b45e6c249587d8be);
+            
+        
+
+        marker_d3b3ead93af3609de2d623708a373f50.bindPopup(popup_e939ea042a11fb5d99e1b5d3f65027c5)
+        ;
+
+        
+    
+    
+                marker_d3b3ead93af3609de2d623708a373f50.setIcon(icon_eca4cb85ab5794dfb936f25c6ddb2511);
+            
+    
+            var marker_1e6de9e032ffededd248198b421b69c0 = L.marker(
+                [21.1555466, -101.648446],
+                {
+}
+            ).addTo(map_e90c12fb995c0be0e73a7d7b8469db30);
+        
+    
+            var icon_cbee93220671cd52999cfb16455aa62d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f012097758cf78ac493f75618e1a46ce = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_97f84e1189c9a96dd1de78d6a860e3ef = $(`<div id="html_97f84e1189c9a96dd1de78d6a860e3ef" style="width: 100.0%; height: 100.0%;"><b>DIEGO ESCOBEDO</b><br>🛣️ IGNACIO SALAS 212<br>🏘️ SAN JOSE DEL CONSUELO</div>`)[0];
+                popup_f012097758cf78ac493f75618e1a46ce.setContent(html_97f84e1189c9a96dd1de78d6a860e3ef);
+            
+        
+
+        marker_1e6de9e032ffededd248198b421b69c0.bindPopup(popup_f012097758cf78ac493f75618e1a46ce)
+        ;
+
+        
+    
+    
+                marker_1e6de9e032ffededd248198b421b69c0.setIcon(icon_cbee93220671cd52999cfb16455aa62d);
+            
+    
+            var marker_9954891e868de993f5d3cc09329e8666 = L.marker(
+                [21.1347509, -101.6906537],
+                {
+}
+            ).addTo(map_e90c12fb995c0be0e73a7d7b8469db30);
+        
+    
+            var icon_d565d7c38cbb21a313392b39595f6cca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_31e018d421769756332b0f22c51724d2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ff7e803bde75162a465748a0a32db96c = $(`<div id="html_ff7e803bde75162a465748a0a32db96c" style="width: 100.0%; height: 100.0%;"><b>DIEGO ESCOBEDO</b><br>🛣️ AV MEXICO 631<br>🏘️ LOS PARAISOS</div>`)[0];
+                popup_31e018d421769756332b0f22c51724d2.setContent(html_ff7e803bde75162a465748a0a32db96c);
+            
+        
+
+        marker_9954891e868de993f5d3cc09329e8666.bindPopup(popup_31e018d421769756332b0f22c51724d2)
+        ;
+
+        
+    
+    
+                marker_9954891e868de993f5d3cc09329e8666.setIcon(icon_d565d7c38cbb21a313392b39595f6cca);
+            
+    
+            var marker_84ea07b1f5d762ba7f6fe81d3aded58d = L.marker(
+                [21.1358563, -101.6721903],
+                {
+}
+            ).addTo(map_e90c12fb995c0be0e73a7d7b8469db30);
+        
+    
+            var icon_f030b69e3a43490896ae0ea2180ec1ad = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5ad154cc7e29fb17b951110a22801e73 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5c35fc8660fc7674050fe58d6a1a763f = $(`<div id="html_5c35fc8660fc7674050fe58d6a1a763f" style="width: 100.0%; height: 100.0%;"><b>DIEGO ESCOBEDO</b><br>🛣️ ZINAPECUARO<br>🏘️ EL RETIRO</div>`)[0];
+                popup_5ad154cc7e29fb17b951110a22801e73.setContent(html_5c35fc8660fc7674050fe58d6a1a763f);
+            
+        
+
+        marker_84ea07b1f5d762ba7f6fe81d3aded58d.bindPopup(popup_5ad154cc7e29fb17b951110a22801e73)
+        ;
+
+        
+    
+    
+                marker_84ea07b1f5d762ba7f6fe81d3aded58d.setIcon(icon_f030b69e3a43490896ae0ea2180ec1ad);
+            
+    
+            var marker_a76c832c19be492a2b94bd4d98283f90 = L.marker(
+                [21.1425074, -101.6373615],
+                {
+}
+            ).addTo(map_e90c12fb995c0be0e73a7d7b8469db30);
+        
+    
+            var icon_d56009fd7df314a7c5b8de1a69fed27e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6db2a751930810f8e59ef198f0df6ac7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d286c00cc636daf6691b4775bc75c2e2 = $(`<div id="html_d286c00cc636daf6691b4775bc75c2e2" style="width: 100.0%; height: 100.0%;"><b>DIEGO ESCOBEDO</b><br>🛣️ JUAN ALONSO DE TORRES 2001<br>🏘️ LEON 1</div>`)[0];
+                popup_6db2a751930810f8e59ef198f0df6ac7.setContent(html_d286c00cc636daf6691b4775bc75c2e2);
+            
+        
+
+        marker_a76c832c19be492a2b94bd4d98283f90.bindPopup(popup_6db2a751930810f8e59ef198f0df6ac7)
+        ;
+
+        
+    
+    
+                marker_a76c832c19be492a2b94bd4d98283f90.setIcon(icon_d56009fd7df314a7c5b8de1a69fed27e);
+            
+    
+            var marker_a0725f7a5e253f05c202a4231f8692c2 = L.marker(
+                [21.0951464, -101.6820647],
+                {
+}
+            ).addTo(map_e90c12fb995c0be0e73a7d7b8469db30);
+        
+    
+            var icon_5371fca965399b1aba51c561be16f51c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e91158c9cef84f72975cffe41d9a922b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cd162094741431a22dc3cb35f75300e6 = $(`<div id="html_cd162094741431a22dc3cb35f75300e6" style="width: 100.0%; height: 100.0%;"><b>BRENDA TORRES</b><br>🛣️ BEATRIZ 134<br>🏘️ LAS MARGARITAS</div>`)[0];
+                popup_e91158c9cef84f72975cffe41d9a922b.setContent(html_cd162094741431a22dc3cb35f75300e6);
+            
+        
+
+        marker_a0725f7a5e253f05c202a4231f8692c2.bindPopup(popup_e91158c9cef84f72975cffe41d9a922b)
+        ;
+
+        
+    
+    
+                marker_a0725f7a5e253f05c202a4231f8692c2.setIcon(icon_5371fca965399b1aba51c561be16f51c);
+            
+    
+            var marker_7ea3096c91ed13d827c2528f6919f9ac = L.marker(
+                [21.114074, -101.6632777],
+                {
+}
+            ).addTo(map_e90c12fb995c0be0e73a7d7b8469db30);
+        
+    
+            var icon_082fa1543d08c622c0505452f7dda0d4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8c8b7c8946939ebf98013d2e9300731f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_670fb86f887cfd0a4c1008491a0eaecb = $(`<div id="html_670fb86f887cfd0a4c1008491a0eaecb" style="width: 100.0%; height: 100.0%;"><b>BRENDA TORRES</b><br>🛣️ PASEO DEL NIÑO <br>🏘️ LA MARTINICA</div>`)[0];
+                popup_8c8b7c8946939ebf98013d2e9300731f.setContent(html_670fb86f887cfd0a4c1008491a0eaecb);
+            
+        
+
+        marker_7ea3096c91ed13d827c2528f6919f9ac.bindPopup(popup_8c8b7c8946939ebf98013d2e9300731f)
+        ;
+
+        
+    
+    
+                marker_7ea3096c91ed13d827c2528f6919f9ac.setIcon(icon_082fa1543d08c622c0505452f7dda0d4);
+            
+    
+            var marker_d3bc06828f49cc71dcd26b205db128b4 = L.marker(
+                [21.114074, -101.6632777],
+                {
+}
+            ).addTo(map_e90c12fb995c0be0e73a7d7b8469db30);
+        
+    
+            var icon_613b376da66b16fefc7833bfdb191366 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fe1cfabef7e1f2c6e502d3741ca25206 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_283a03bb9abd33072de9e82913ea9784 = $(`<div id="html_283a03bb9abd33072de9e82913ea9784" style="width: 100.0%; height: 100.0%;"><b>BRENDA TORRES</b><br>🛣️ PASEO DEL NIÑO <br>🏘️ LA MARTINICA</div>`)[0];
+                popup_fe1cfabef7e1f2c6e502d3741ca25206.setContent(html_283a03bb9abd33072de9e82913ea9784);
+            
+        
+
+        marker_d3bc06828f49cc71dcd26b205db128b4.bindPopup(popup_fe1cfabef7e1f2c6e502d3741ca25206)
+        ;
+
+        
+    
+    
+                marker_d3bc06828f49cc71dcd26b205db128b4.setIcon(icon_613b376da66b16fefc7833bfdb191366);
+            
+    
+            var marker_45624450d6dfa5a42eea931bcff58360 = L.marker(
+                [21.1314779, -101.6342728],
+                {
+}
+            ).addTo(map_e90c12fb995c0be0e73a7d7b8469db30);
+        
+    
+            var icon_1bcce79847be0367e8f383c2efe9ac42 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b88d32844b98c9803884c8ddffe46792 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_24b194cd061f5bd0b53a625ea89af573 = $(`<div id="html_24b194cd061f5bd0b53a625ea89af573" style="width: 100.0%; height: 100.0%;"><b>BRENDA TORRES</b><br>🛣️ GARONA 1032<br>🏘️ RESIDENCIAL AMBERES</div>`)[0];
+                popup_b88d32844b98c9803884c8ddffe46792.setContent(html_24b194cd061f5bd0b53a625ea89af573);
+            
+        
+
+        marker_45624450d6dfa5a42eea931bcff58360.bindPopup(popup_b88d32844b98c9803884c8ddffe46792)
+        ;
+
+        
+    
+    
+                marker_45624450d6dfa5a42eea931bcff58360.setIcon(icon_1bcce79847be0367e8f383c2efe9ac42);
+            
+</script>
+</html>
