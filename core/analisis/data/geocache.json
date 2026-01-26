@@ -702,5 +702,245 @@
   "CERRALVO, NUEVO LEON, León, Guanajuato, Mexico": [
     21.1889328,
     -101.6590755
+  ],
+  "HILARIO MEDINA, DEPORTIVA 2, León, Guanajuato, Mexico": [
+    21.154732,
+    -101.6458332
+  ],
+  "LAZARO CARDENAS 337-B, PRESIDENTES DE MEXICO, León, Guanajuato, Mexico": [
+    21.1451459,
+    -101.6488679
+  ],
+  "MARAVILLAS, León, Guanajuato, Mexico": [
+    21.1466843,
+    -101.631222
+  ],
+  "EDUARDO SAMAGA 237, MARAVILLAS, León, Guanajuato, Mexico": [
+    21.1466843,
+    -101.631222
+  ],
+  "LA CAMPIÑA, León, Guanajuato, Mexico": [
+    21.101026,
+    -101.6176262
+  ],
+  "DELTA, LA CAMPIÑA, León, Guanajuato, Mexico": [
+    21.101026,
+    -101.6176262
+  ],
+  "MALECON DEL GRANIZO, PEÑITAS, León, Guanajuato, Mexico": [
+    21.1446717,
+    -101.6793968
+  ],
+  "HERRADURA, SAN CARLOS LA RONCHA, León, Guanajuato, Mexico": [
+    21.0694124,
+    -101.5841623
+  ],
+  "HILARIO MEDINA, KILLIAN, León, Guanajuato, Mexico": [
+    21.1270749,
+    -101.6608699
+  ],
+  "HILARIO MEDINA, REAL PROVIDENCIA, León, Guanajuato, Mexico": [
+    21.1414277,
+    -101.6545435
+  ],
+  "BLVD AEROPUERTO, SAN JOSE EL ALTO, León, Guanajuato, Mexico": [
+    21.0817027,
+    -101.6098968
+  ],
+  "CONGRESO 231, VILLA INSURGENTES, León, Guanajuato, Mexico": [
+    21.1454336,
+    -101.6652317
+  ],
+  "VALLE GLORIA 106, VALLE DE SAN BERNARDO, León, Guanajuato, Mexico": [
+    21.1563827,
+    -101.6292207
+  ],
+  "RINCONADA DE JACARANDAS, RINCONADA DEL BOSQUE, León, Guanajuato, Mexico": [
+    21.1702764,
+    -101.674635
+  ],
+  "CONVERSION DE FE 119, SAN JAVIER, León, Guanajuato, Mexico": [
+    21.1898427,
+    -101.6628241
+  ],
+  "TORRES DE SAN NICOLAS, León, Guanajuato, Mexico": [
+    21.1008979,
+    -101.674304
+  ],
+  "TORRE 4, TORRES DE SAN NICOLAS, León, Guanajuato, Mexico": [
+    21.1008979,
+    -101.674304
+  ],
+  "LAS TORRES, UNIDAD DEPORTIVA 1, León, Guanajuato, Mexico": [
+    21.1462124,
+    -101.6480809
+  ],
+  "ACAPULCO 752, EL COECILLO, León, Guanajuato, Mexico": [
+    21.1264142,
+    -101.6622004
+  ],
+  "EDUARDO CANO 383, MESA DE MEDINA, León, Guanajuato, Mexico": [
+    21.1471339,
+    -101.6111958
+  ],
+  "BLVD ARISTOTELES, CAMINO A SAN JUAN, León, Guanajuato, Mexico": [
+    21.1419513,
+    -101.7558235
+  ],
+  "MONTE DE LOS OLIVOS 102, LOS ANGELES, León, Guanajuato, Mexico": [
+    21.1307045,
+    -101.6405814
+  ],
+  "MONTEVIDEO 207, EL CORTIJO, León, Guanajuato, Mexico": [
+    21.1361625,
+    -101.6609855
+  ],
+  "FRANCISCO I MADERO, ZONA CENTRO, León, Guanajuato, Mexico": [
+    21.1218458,
+    -101.681366
+  ],
+  "FRANCISCO VILLA, HACIENDA LOS NARANJOS, León, Guanajuato, Mexico": [
+    21.1445376,
+    -101.6359353
+  ],
+  "PANTEON JARDINES DE LEON, León, Guanajuato, Mexico": [
+    21.1443297,
+    -101.6640722
+  ],
+  "CONGRESO DE CHINPANCINGO, PANTEON JARDINES DE LEON, León, Guanajuato, Mexico": [
+    21.1443297,
+    -101.6640722
+  ],
+  "REFUGIO 486, ORIENTAL, León, Guanajuato, Mexico": [
+    21.1074255,
+    -101.6549959
+  ],
+  "JUAREZ 106, SAN JOSE DEL ALTO, León, Guanajuato, Mexico": [
+    21.0843934,
+    -101.6141561
+  ],
+  "VILLA INSURGENTES, León, Guanajuato, Mexico": [
+    21.147382,
+    -101.6668325
+  ],
+  "ANTONIO DA SILVA, VILLA INSURGENTES, León, Guanajuato, Mexico": [
+    21.147382,
+    -101.6668325
+  ],
+  "HACIENDA BONITA 207, HACIENDA IBARRILLA, León, Guanajuato, Mexico": [
+    21.1774643,
+    -101.6443434
+  ],
+  "ALEGRIA 206, EL GRANJENO, León, Guanajuato, Mexico": [
+    21.0857809,
+    -101.6641762
+  ],
+  "AV. GUANAJUATO, LEON 1, León, Guanajuato, Mexico": [
+    21.1375907,
+    -101.6483375
+  ],
+  "VILLA, LEON 1, León, Guanajuato, Mexico": [
+    21.1467705,
+    -101.6458328
+  ],
+  "VALLE DE SAN BERNARDO, León, Guanajuato, Mexico": [
+    21.1571905,
+    -101.6268995
+  ],
+  "VALLE LA ESCONDIDA 317, VALLE DE SAN BERNARDO, León, Guanajuato, Mexico": [
+    21.1571905,
+    -101.6268995
+  ],
+  "PUERTO VALLARTA 316, NUEVA CANDELARIA, León, Guanajuato, Mexico": [
+    21.128638,
+    -101.6625456
+  ],
+  "OLIVO DEL VALLE  211, VALLE DE LEON, León, Guanajuato, Mexico": [
+    21.1577919,
+    -101.6702117
+  ],
+  "LOMAS CAMPESTRE, León, Guanajuato, Mexico": [
+    21.1512861,
+    -101.7074625
+  ],
+  "TORRE BORSALINO INT 901, LOMAS CAMPESTRE, León, Guanajuato, Mexico": [
+    21.1512861,
+    -101.7074625
+  ],
+  "PASCUAL HURTAZA, LEON 1, León, Guanajuato, Mexico": [
+    21.1466761,
+    -101.63514
+  ],
+  "ANTONIO HERNANDEZ M. 137, LEON 1, León, Guanajuato, Mexico": [
+    21.1499934,
+    -101.6392065
+  ],
+  "PAULINO DURAN 108, LEON 1, León, Guanajuato, Mexico": [
+    21.1455888,
+    -101.6372821
+  ],
+  "VICENTE VALTIERRA, MICHOACAN, León, Guanajuato, Mexico": [
+    21.1342169,
+    -101.6755383
+  ],
+  "GALILEA 607, SAN FELIPE DE JESUS, León, Guanajuato, Mexico": [
+    21.1260627,
+    -101.6513455
+  ],
+  "SAN MANUEL 330, REAL PROVIDENCIA, León, Guanajuato, Mexico": [
+    21.1352978,
+    -101.6529897
+  ],
+  "SANTA ANA 210, SAN JORGE, León, Guanajuato, Mexico": [
+    21.1150789,
+    -101.635692
+  ],
+  "PRESA PEÑUELAS 116, RIVERA DE LA PRESA, León, Guanajuato, Mexico": [
+    21.1766118,
+    -101.6727179
+  ],
+  "SAN FELIPE DE JESUS, León, Guanajuato, Mexico": [
+    21.1318786,
+    -101.6501389
+  ],
+  "VERTIZ CAMPERO, SAN FELIPE DE JESUS, León, Guanajuato, Mexico": [
+    21.1318786,
+    -101.6501389
+  ],
+  "DOLORES 410, INDUSTRIAL, León, Guanajuato, Mexico": [
+    21.1339661,
+    -101.6953817
+  ],
+  "ECHEVESTE, León, Guanajuato, Mexico": [
+    21.1829417,
+    -101.6685501
+  ],
+  "MATERIALSTAS, ECHEVESTE, León, Guanajuato, Mexico": [
+    21.1829417,
+    -101.6685501
+  ],
+  "EL RETIRO, León, Guanajuato, Mexico": [
+    21.1388499,
+    -101.6724489
+  ],
+  "SEUZ, EL RETIRO, León, Guanajuato, Mexico": [
+    21.1388499,
+    -101.6724489
+  ],
+  "10 DE ABRIL 121, 8 DE MARZO, León, Guanajuato, Mexico": [
+    21.1707958,
+    -101.6383214
+  ],
+  "CUBILETE 103, REAL PROVIDENCIA, León, Guanajuato, Mexico": [
+    21.1402889,
+    -101.6561726
+  ],
+  "DEPORTIVA 2, León, Guanajuato, Mexico": [
+    21.1505895,
+    -101.6440734
+  ],
+  "BRAVOS DE A.101-102, DEPORTIVA 2, León, Guanajuato, Mexico": [
+    21.1505895,
+    -101.6440734
   ]
 }

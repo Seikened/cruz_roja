@@ -82,15 +82,12 @@ class Expediente(BaseModel):
         calle = (self.calle_principal or "").strip().lower()
         colonia = (self.colonia_o_comunidad or "").strip().lower()
 
-        # 1. Si no hay nada de texto
         if not calle and not colonia:
             return False
 
-        # 2. Si la calle es explícitamente basura (ej: "N/P")
         if calle in BASURA_KEYWORDS:
             return False
             
-        # 3. Si la calle es muy corta (ej: "A") suele ser error
         if len(calle) < 2:
             return False
 
@@ -105,7 +102,7 @@ class Expediente(BaseModel):
         cached_coords = cache_coord.get(self.query_busqueda)
         if cached_coords:
             self.latitud, self.longitud = cached_coords
-            log.info(f"Dirección cacheada: {self.calle_principal} -> {self.latitud}, {self.longitud}")
+            log.note(f"Dirección cacheada: {self.calle_principal} -> {self.latitud}, {self.longitud}")
             return
 
         try:
@@ -130,14 +127,14 @@ class Expediente(BaseModel):
                     ubi = geolocator.geocode(fallback, timeout=10) # type: ignore
                     
                     if ubi:
-                        cache_coord.save(fallback, ubi.latitude, ubi.longitude) # type : ignore
+                        cache_coord.save(fallback, ubi.latitude, ubi.longitude) # type: ignore # type : ignore
             
             if ubi:
                 self.latitud = ubi.latitude # type: ignore
                 self.longitud = ubi.longitude # type: ignore
                 log.info(f"✅ API Encontró: {self.calle_principal}")
                 
-                cache_coord.save(self.query_busqueda, self.latitud, self.longitud) # type : ignore
+                cache_coord.save(self.query_busqueda, self.latitud, self.longitud) # type: ignore # type : ignore
             else:
                 log.warning(f"❌ No se encontraron coordenadas para: {self.calle_principal}")
             
