@@ -17,7 +17,7 @@ CACHE_FILE = DATA_DIR / "geocache.json"
 
 
 
-
+# Hola soy choch
 class GeoCache:
     def __init__(self, path: Path) -> None:
         self.file = path
