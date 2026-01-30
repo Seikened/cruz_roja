@@ -8,3 +8,38 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Entornos y variables de entorno
+.env
+.env.*
+.venv/
+venv/
+ENV/
+
+# Bytecode de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribución y empaquetado
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Cachés y herramientas
+.pytest_cache/
+.mypy_cache/
+.cache/
+.coverage*
+htmlcov/
+
+# Configuración de IDE/editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos varios
+.DS_Store
+*.log
