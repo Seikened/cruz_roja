@@ -4,8 +4,8 @@ from pathlib import Path
 # --- 1. CONFIGURACIÓN ---
 base_dir = Path(__file__).resolve().parent
 # Ajusta la ruta a tu archivo real
-raw_path = base_dir / "data" / "2022" / "bitacora_2022-2023.csv"
-clean_path = base_dir / "data" / "datos_limpios.csv"
+raw_path = base_dir / "data" / "2022" / "bitacora_2022.csv"
+clean_path = base_dir / "data" / "2022" / "bitacora_2022_concentrado.csv"
 
 # --- 2. LÓGICA (REGEX) ---
 RX_FECHA = r"\d{2}[./]\d{2}[./]\d{2,4}"  # dd.mm.yy
