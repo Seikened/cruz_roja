@@ -4,3 +4,4 @@ Este es el pilar más denso. Es la "columna vertebral" que conecta la digitaliza
 🔸 Arquitectura de Servidor: Configuración del entorno (VPS + Docker) que sostendrá los scripts de automatización y la API.
 🔸 Dashboarding: Al tener datos limpios, generamos tableros de inteligencia para visualizar KPIs de pacientes, zonas y patologías en tiempo real.
 🔸 Orquestación: Crear la lógica que permite que el Chatbot "hable" con la Base de Datos y viceversa.
+Ya ando chambeando con mi nueva cuenta de GitHub x2.   
