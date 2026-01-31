@@ -17,6 +17,7 @@ dependencies = [
     "pydantic>=2.12.5",
     "python-dotenv>=1.2.1",
     "python-telegram-bot>=22.6",
+    "pymongo>=4.16.0",
     "scikit-learn>=1.8.0",
     "whatsapp-toolkit>=1.9.2",
 ]
