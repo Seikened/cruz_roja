@@ -78,7 +78,7 @@ try:
             pl.col("CALLE"),
             pl.col("COLONIA")
         ])
-        .unique()
+        #.unique()
     )
     df_direcciones.write_csv(base_dir / "data" / "direcciones_unicas.csv")
     
