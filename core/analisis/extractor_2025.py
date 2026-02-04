@@ -61,5 +61,7 @@ df_final = pl.concat(lista_limpia, how="diagonal")
 print(f"Cantidad de filas recuperadas: {df_final.height}")
 print(df_final.head())
 
+#aca guarda el archivo en uno nuevo
+
 df_final.write_csv(archivo_salida)
 print(f"Archivo guardado en: {archivo_salida}")
