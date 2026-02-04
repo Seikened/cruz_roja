@@ -19,7 +19,7 @@ archivos_a_leer = [
 ]
 
 archivo_salida = base_dir / "data" / "2025" / "bitacora_2025_concentrado.csv"
-
+#codigo de choch
 
 mapa_correcciones = {
     "TIPO DE SALIDA": "TIPO DE SERVICIO",
