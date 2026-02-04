@@ -53,10 +53,9 @@ BASURA_KEYWORDS = {"n/p", "s/n", "s/d", "sin dato", "no proporcionado", "no", "x
 cache_coord = GeoCache(CACHE_FILE)
 
 class Expediente(BaseModel):
-    cecom: str # esto es: Centro de Comando
-    calle_principal: Optional[str] = None
-    colonia_o_comunidad: Optional[str] = None
-    cruce: Optional[str] = None
+    CENTRO_DE_COMANDO: str 
+    CALLE: Optional[str] = None
+    COLONIA: Optional[str] = None
     
     # Coordenadas
     latitud: Optional[float] = None
@@ -65,22 +64,22 @@ class Expediente(BaseModel):
 
     @property
     def direccion_visual(self) -> str:
-        c = self.calle_principal or "S/N"
-        col = self.colonia_o_comunidad or "S/C"
+        c = self.CALLE or "S/N"
+        col = self.COLONIA or "S/C"
         return f" {c}<br> {col}"
 
     @property
     def query_busqueda(self) -> str:
-        calle = (self.calle_principal or "").strip()
-        colonia = (self.colonia_o_comunidad or "").strip()
+        calle = (self.CALLE or "").strip()
+        colonia = (self.COLONIA or "").strip()
         
         return f"{calle}, {colonia}, León, Guanajuato, Mexico"
 
     @property
     def es_valida(self) -> bool:
         """Filtro Anti-Basura"""
-        calle = (self.calle_principal or "").strip().lower()
-        colonia = (self.colonia_o_comunidad or "").strip().lower()
+        calle = (self.CALLE or "").strip().lower()
+        colonia = (self.COLONIA or "").strip().lower()
 
         if not calle and not colonia:
             return False
@@ -96,13 +95,13 @@ class Expediente(BaseModel):
     def geocodificar(self):
 
         if not self.es_valida:
-            log.warning(f"🗑️ Dirección basura ignorada: {self.calle_principal}")
+            log.warning(f"🗑️ Dirección basura ignorada: {self.CALLE}")
             return
         
         cached_coords = cache_coord.get(self.query_busqueda)
         if cached_coords:
             self.latitud, self.longitud = cached_coords
-            log.note(f"Dirección cacheada: {self.calle_principal} -> {self.latitud}, {self.longitud}")
+            log.note(f"Dirección cacheada: {self.CALLE} -> {self.latitud}, {self.longitud}")
             return
 
         try:
@@ -112,8 +111,8 @@ class Expediente(BaseModel):
             ubi = geolocator.geocode(self.query_busqueda, timeout=10) # type: ignore
             
             # Busqueda por colonia 
-            if not ubi and self.colonia_o_comunidad:
-                fallback = f"{self.colonia_o_comunidad}, León, Guanajuato, Mexico"
+            if not ubi and self.COLONIA:
+                fallback = f"{self.COLONIA}, León, Guanajuato, Mexico"
                 
                 cached_fallback = cache_coord.get(fallback)
                 
@@ -132,11 +131,11 @@ class Expediente(BaseModel):
             if ubi:
                 self.latitud = ubi.latitude # type: ignore
                 self.longitud = ubi.longitude # type: ignore
-                log.info(f"✅ API Encontró: {self.calle_principal}")
+                log.info(f"✅ API Encontró: {self.CALLE}")
                 
                 cache_coord.save(self.query_busqueda, self.latitud, self.longitud) # type: ignore # type : ignore
             else:
-                log.warning(f"❌ No se encontraron coordenadas para: {self.calle_principal}")
+                log.warning(f"❌ No se encontraron coordenadas para: {self.CALLE}")
             
         except Exception as e:
             log.error(f"Error API: {e}")
@@ -147,12 +146,9 @@ class Expediente(BaseModel):
 # ==================== Fnciones ====================
 
 def dataset() -> pl.DataFrame:
-    file = DATA_DIR / "dataset_feb_cruz_roja.csv"
+    file = DATA_DIR / "direcciones_unicas.csv"
     return (
         pl.scan_csv(file)
-        .drop_nulls(subset=["CECOM"])
-        .drop(["OBSERVACIONES"])
-        .select(pl.all().name.to_lowercase().name.replace(" ", "_"))
         .collect()
     )
 
@@ -189,7 +185,7 @@ for expediente in generador_expediente(dataset()):
             mapa_leon,
             expediente.latitud,
             expediente.longitud,
-            f"<b>{expediente.cecom}</b><br>{expediente.direccion_visual}"
+            f"<b>{expediente.CENTRO_DE_COMANDO}</b><br>{expediente.direccion_visual}"
         )
 
 
