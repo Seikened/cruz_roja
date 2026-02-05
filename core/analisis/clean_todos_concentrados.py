@@ -52,7 +52,7 @@ def auditar_errores(lf, candidate_col: str, target_name: str, evidence_col: str)
 # ========================================
 # Helpers de limpieza
 # ========================================
-def texto(col_obj: str):
+def expr_texto(col_obj: str):
     return (
         pl.col(col_obj)
         .str.to_lowercase()                      # Estandarizar: Minúsculas
@@ -61,25 +61,28 @@ def texto(col_obj: str):
         .str.strip_chars()                       # Limpieza: Bordes vacíos
     )
 
+
+def col_texto(lf, col_obj: str):
+    clean_text_expr = expr_texto(col_obj)
+    
+    text = (
+        lf
+        .with_columns(clean_text = clean_text_expr)
+        .with_columns(
+            final_text = pl.when(pl.col("clean_text") == "") # Si quedó vacío tras limpiar
+                          .then(pl.lit("se desconoce"))        # Poner "se desconoce"
+                          .otherwise(pl.col("clean_text"))    # Si no, es el nombre
+                          .fill_null(pl.lit("se desconoce"))   # Si es NULL, poner "se desconoce"
+        )
+    )
+    return text
+
 # ========================================
 # Tratamientos
 # ========================================
 def tratar_cecom(lf, col_obj: str):
-    clean_cecom_expr = (
-        texto(col_obj)
-    )
+    return col_texto(lf, col_obj)
     
-    cecom = (
-        lf
-        .with_columns(clean_cecom = clean_cecom_expr)
-        .with_columns(
-            final_cecom = pl.when(pl.col("clean_cecom") == "") # Si quedó vacío tras limpiar
-                          .then(pl.lit("se desconoce"))        # Poner "se desconoce"
-                          .otherwise(pl.col("clean_cecom"))    # Si no, es el nombre
-                          .fill_null(pl.lit("se desconoce"))   # Si es NULL, poner "se desconoce"
-        )
-    )
-    return cecom
 
 def tratar_fecha(lf, col_obj: str):
     # REGLAS DE LIMPIEZA
@@ -143,25 +146,20 @@ def tratar_hora(lf, col_obj: str):
     return hora
 
 def tratar_tipo_de_servicio(lf, col_obj: str):
-    clean_tipo_expr = (
-        texto(col_obj)
-    )
-    
-    tipo_servicio = (
-        lf
-        .with_columns(clean_tipo_de_servicio = clean_tipo_expr)
-        .with_columns(
-            final_tipo_de_servicio = pl.when(pl.col("clean_tipo_de_servicio") == "") # Si quedó vacío tras limpiar
-                                      .then(pl.lit("se desconoce"))                  # Poner "se desconoce"
-                                      .otherwise(pl.col("clean_tipo_de_servicio"))   # Si no, es el nombre
-                                      .fill_null(pl.lit("se desconoce"))             # Si es NULL, poner "se desconoce"
-        )
-    )
-    return tipo_servicio
+    return col_texto(lf, col_obj)
 
-def causa(lf, col_obj: str):
+def tratar_hora_de_salida(lf, col_obj: str):
+    return tratar_hora(lf, col_obj)
+
+def tratar_hora_de_llegada(lf, col_obj: str):
+    return tratar_hora(lf, col_obj)
+
+def tratar_hora_en_base(lf, col_obj: str):
+    return tratar_hora(lf, col_obj)
+
+def tratar_causa(lf, col_obj: str):
     clean_causa_expr = (
-        texto(col_obj)
+        expr_texto(col_obj)
         .str.replace("na", "se desconoce")
     )
     
@@ -180,51 +178,88 @@ def causa(lf, col_obj: str):
 # ========================================
 # Pipeline Principal
 # ========================================
-lf = (
-    pl.scan_csv(FILE)
-    .pipe(tratar_cecom, "CECOM")
-    .pipe(tratar_fecha, "FECHA")
-    .pipe(tratar_hora, "HORA_DE_LLAMADA")
-    .pipe(tratar_tipo_de_servicio, "TIPO_DE_SERVICIO")
-    .pipe(causa, "CAUSA")
+lf = pl.scan_csv(FILE)
+
+lf_cecom = (
+    lf.pipe(tratar_cecom, "CECOM")
+    .pipe(
+        auditar_errores,
+        candidate_col="final_text", 
+        target_name="CECOM",
+        evidence_col="clean_text"
+    )
 )
 
-lf_cecom = auditar_errores(
-    lf,
-    candidate_col="final_cecom", 
-    target_name="CECOM",
-    evidence_col="clean_cecom"
-)
-
-lf_fecha = auditar_errores(
-    lf_cecom, 
-    candidate_col="final_date", 
-    target_name="FECHA",
-    evidence_col="clean_date"
-)
-
-
-lf_hora = auditar_errores(
-    lf_fecha,
-    candidate_col="final_time", 
-    target_name="HORA_DE_LLAMADA", 
-    evidence_col="clean_time"
+lf_fecha = (
+    lf_cecom.pipe(tratar_fecha, "FECHA")
+    .pipe(
+        auditar_errores,
+        candidate_col="final_date", 
+        target_name="FECHA",
+        evidence_col="clean_date"
+    )
 )
 
 
-lf_tipo_de_servicio = auditar_errores(
-    lf_hora,
-    candidate_col="final_tipo_de_servicio", 
-    target_name="TIPO_DE_SERVICIO",
-    evidence_col="clean_tipo_de_servicio"
+lf_hora = (
+    lf_fecha.pipe(tratar_hora, "HORA_DE_LLAMADA")
+    .pipe(
+        auditar_errores,
+        candidate_col="final_time", 
+        target_name="HORA_DE_LLAMADA", 
+        evidence_col="clean_time"
+    )
 )
 
 
-lf_causa = auditar_errores(
-    lf_tipo_de_servicio,
-    candidate_col="final_causa", 
-    target_name="CAUSA",
-    evidence_col="clean_causa"
+lf_tipo_de_servicio = (
+    lf_hora.pipe(tratar_tipo_de_servicio, "TIPO_DE_SERVICIO")
+    .pipe(
+        auditar_errores,
+        candidate_col="final_text", 
+        target_name="TIPO_DE_SERVICIO",
+        evidence_col="clean_text"
+    )
+)
+
+lf_hora_de_salida = (
+    lf_tipo_de_servicio.pipe(tratar_hora_de_salida, "HORA_DE_SALIDA")
+    .pipe(
+        auditar_errores,
+        candidate_col="final_time", 
+        target_name="HORA_DE_SALIDA", 
+        evidence_col="clean_time"
+    )
+)
+
+lf_hora_de_llegada = (
+    lf_hora_de_salida.pipe(tratar_hora_de_llegada, "HORA_DE_LLEGADA")
+    .pipe(
+        auditar_errores,
+        candidate_col="final_time", 
+        target_name="HORA_DE_LLEGADA", 
+        evidence_col="clean_time"
+    )
+)
+
+lf_hora_en_base = (
+    lf_hora_de_llegada.pipe(tratar_hora_en_base, "HORA_EN_BASE")
+    .pipe(
+        auditar_errores,
+        candidate_col="final_time", 
+        target_name="HORA_EN_BASE", 
+        evidence_col="clean_time"
+    )
+)
+
+lf_causa = (
+    lf_hora_en_base.pipe(tratar_causa, "CAUSA")
+    .pipe(
+        auditar_errores,
+        candidate_col="final_causa", 
+        target_name="CAUSA",
+        evidence_col="clean_causa"
+    )
 )
 
 
