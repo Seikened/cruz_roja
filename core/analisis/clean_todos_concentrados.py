@@ -74,9 +74,9 @@ def tratar_cecom(lf, col_obj: str):
         .with_columns(clean_cecom = clean_cecom_expr)
         .with_columns(
             final_cecom = pl.when(pl.col("clean_cecom") == "") # Si quedó vacío tras limpiar
-                          .then(pl.lit("se desconoce"))              # Poner "se desconoce"
+                          .then(pl.lit("se desconoce"))        # Poner "se desconoce"
                           .otherwise(pl.col("clean_cecom"))    # Si no, es el nombre
-                          .fill_null(pl.lit("se desconoce"))        # Si es NULL, poner "se desconoce"
+                          .fill_null(pl.lit("se desconoce"))   # Si es NULL, poner "se desconoce"
         )
     )
     return cecom
@@ -152,9 +152,9 @@ def tratar_tipo_de_servicio(lf, col_obj: str):
         .with_columns(clean_tipo_de_servicio = clean_tipo_expr)
         .with_columns(
             final_tipo_de_servicio = pl.when(pl.col("clean_tipo_de_servicio") == "") # Si quedó vacío tras limpiar
-                                      .then(pl.lit("se desconoce"))                     # Poner "se desconoce"
-                                      .otherwise(pl.col("clean_tipo_de_servicio")) # Si no, es el nombre
-                                      .fill_null(pl.lit("se desconoce"))                 # Si es NULL, poner "se desconoce"
+                                      .then(pl.lit("se desconoce"))                  # Poner "se desconoce"
+                                      .otherwise(pl.col("clean_tipo_de_servicio"))   # Si no, es el nombre
+                                      .fill_null(pl.lit("se desconoce"))             # Si es NULL, poner "se desconoce"
         )
     )
     return tipo_servicio
@@ -170,9 +170,9 @@ def causa(lf, col_obj: str):
         .with_columns(clean_causa = clean_causa_expr)
         .with_columns(
             final_causa = pl.when(pl.col("clean_causa") == "") # Si quedó vacío tras limpiar
-                          .then(pl.lit("se desconoce"))              # Poner "se desconoce"
+                          .then(pl.lit("se desconoce"))        # Poner "se desconoce"
                           .otherwise(pl.col("clean_causa"))    # Si no, es el nombre
-                          .fill_null(pl.lit("se desconoce"))        # Si es NULL, poner "se desconoce"
+                          .fill_null(pl.lit("se desconoce"))   # Si es NULL, poner "se desconoce"
         )
     )
     return causa
