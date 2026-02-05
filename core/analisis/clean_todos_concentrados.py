@@ -83,9 +83,12 @@ def tratar_hora(lf, col_obj: str):
     # REGLAS DE LIMPIEZA
     clean_hora_expr = (
         pl.col(col_obj)
-        .str.to_lowercase()          # Convertir a minúsculas
-        .str.replace_all(r"\.", "")  # Eliminar puntos
-        .str.replace_all(r"[|]", "") # Eliminamos el pipe 
+        .str.to_lowercase()                   # Convertir a minúsculas
+        .str.replace(r"(\d)\.(\d)", "$1:$2")  # Reemplazar puntos entre dígitos por dos puntos
+        .str.replace_all(r"\.", "")           # Eliminar puntos
+        .str.replace_all(r"[|]", "")          # Eliminamos el pipe 
+        .str.strip_chars()                    # Eliminar espacios
+        .str.replace(r"(\d)(am|pm)", "$1 $2") # Agregar espacio
         
         
     )
@@ -95,7 +98,21 @@ def tratar_hora(lf, col_obj: str):
         lf
         .with_columns(clean_time = clean_hora_expr)
         .with_columns(
-            final_time = pl.col("clean_time").str.to_time("%H:%M", strict=False)
+            final_time = pl.coalesce([
+                # --- GRUPO 1: FORMATOS LIMPIOS ---
+                pl.col("clean_time").str.to_time("%H:%M:%S", strict=False), # 14:30:00
+                pl.col("clean_time").str.to_time("%H:%M", strict=False),    # 14:30
+                
+                # --- GRUPO 2: FORMATOS 12H ---
+                pl.col("clean_time").str.to_time("%I:%M:%S %p", strict=False), # 02:30:00 pm
+                pl.col("clean_time").str.to_time("%I:%M %p", strict=False),    # 02:30 pm
+
+                # --- GRUPO 3: LOS MUTANTES (Tus errores actuales) ---
+                # Caso: "21:40:00 pm" (Militar + PM). 
+                # Usamos %H (24h) pero le decimos que ignore el %p al final
+                pl.col("clean_time").str.to_time("%H:%M:%S %p", strict=False),
+                pl.col("clean_time").str.to_time("%H:%M %p", strict=False),
+            ])
         )
     )
     return hora
@@ -112,10 +129,19 @@ lf = (
 
 
 
+lf_fecha = auditar_errores(
+    lf, 
+    candidate_col="final_date", 
+    target_name="FECHA",
+    evidence_col="clean_date"
+)
+
 
 df_limpio = auditar_errores(
-    lf, 
+    lf_fecha,
     candidate_col="final_time", 
     target_name="HORA_DE_LLAMADA", 
     evidence_col="clean_time"
 )
+
+log.debug(df_limpio.collect())
