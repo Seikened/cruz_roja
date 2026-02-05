@@ -50,8 +50,37 @@ def auditar_errores(lf, candidate_col: str, target_name: str, evidence_col: str)
     )
 
 # ========================================
-# Tratamientamientos
+# Helpers de limpieza
 # ========================================
+def texto(col_obj: str):
+    return (
+        pl.col(col_obj)
+        .str.to_lowercase()                      # Estandarizar: Minúsculas
+        .str.replace_all(r"[^a-záéíóúüñ\s]", "") # Limpieza: Solo letras y espacios
+        .str.replace_all(r"\s+", " ")            # Limpieza: Unificar espacios múltiples
+        .str.strip_chars()                       # Limpieza: Bordes vacíos
+    )
+
+# ========================================
+# Tratamientos
+# ========================================
+def tratar_cecom(lf, col_obj: str):
+    clean_cecom_expr = (
+        texto(col_obj)
+    )
+    
+    cecom = (
+        lf
+        .with_columns(clean_cecom = clean_cecom_expr)
+        .with_columns(
+            final_cecom = pl.when(pl.col("clean_cecom") == "") # Si quedó vacío tras limpiar
+                          .then(pl.lit("se desconoce"))              # Poner "se desconoce"
+                          .otherwise(pl.col("clean_cecom"))    # Si no, es el nombre
+                          .fill_null(pl.lit("se desconoce"))        # Si es NULL, poner "se desconoce"
+        )
+    )
+    return cecom
+
 def tratar_fecha(lf, col_obj: str):
     # REGLAS DE LIMPIEZA
     clean_fecha_expr = (
@@ -119,14 +148,20 @@ def tratar_hora(lf, col_obj: str):
 # ========================================
 lf = (
     pl.scan_csv(FILE)
+    .pipe(tratar_cecom, "CECOM")
     .pipe(tratar_fecha, "FECHA")
     .pipe(tratar_hora, "HORA_DE_LLAMADA")
 )
 
-
+lf_cecom = auditar_errores(
+    lf,
+    candidate_col="final_cecom", 
+    target_name="CECOM",
+    evidence_col="clean_cecom"
+)
 
 lf_fecha = auditar_errores(
-    lf, 
+    lf_cecom, 
     candidate_col="final_date", 
     target_name="FECHA",
     evidence_col="clean_date"
