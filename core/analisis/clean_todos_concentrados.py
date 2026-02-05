@@ -83,14 +83,17 @@ def tratar_hora(lf, col_obj: str):
     # REGLAS DE LIMPIEZA
     clean_hora_expr = (
         pl.col(col_obj)
-        .str.to_lowercase()                   # Convertir a minúsculas
-        .str.replace(r"(\d)\.(\d)", "$1:$2")  # Reemplazar puntos entre dígitos por dos puntos
-        .str.replace_all(r"\.", "")           # Eliminar puntos
-        .str.replace_all(r"[|]", "")          # Eliminamos el pipe 
-        .str.strip_chars()                    # Eliminar espacios
-        .str.replace(r"(\d)(am|pm)", "$1 $2") # Agregar espacio
-        
-        
+        .str.to_lowercase()                                    # Estandarizar: Minúsculas
+        .str.replace(r"n/a", "9:00")                           # Imputación: N/A -> 9:00
+        .str.replace(r"^24:", "00:")                           # Corrección: 24:00 -> 00:00
+        .str.replace(r"(\d{2})\.(\d{2})\.(\d{2})", "$1:$2:$3") # Formato: HH.MM.SS -> HH:MM:SS
+        .str.replace(r"(\d)\.(\d)", "$1:$2")                   # Formato: HH.MM -> HH:MM
+        .str.replace_all(r":+", ":")                           # Limpieza: Unificar ::
+        .str.replace_all(r"\.", "")                            # Limpieza: Eliminar puntos (a.m.)
+        .str.replace_all(r"[|]", "")                           # Limpieza: Eliminar pipes
+        .str.strip_chars()                                     # Limpieza: Bordes vacíos
+        .str.replace(r"(\d)(am|pm)", "$1 $2")                  # Formato: Espacio antes de AM/PM
+        .str.replace(r"^(\d{1,2}:\d{2}:\d{2}):\d+$", "$1")     # Corrección: Eliminar 4to segmento
     )
     
     # Transformación final de la hora
@@ -99,20 +102,13 @@ def tratar_hora(lf, col_obj: str):
         .with_columns(clean_time = clean_hora_expr)
         .with_columns(
             final_time = pl.coalesce([
-                # --- GRUPO 1: FORMATOS LIMPIOS ---
-                pl.col("clean_time").str.to_time("%H:%M:%S", strict=False), # 14:30:00
-                pl.col("clean_time").str.to_time("%H:%M", strict=False),    # 14:30
-                
-                # --- GRUPO 2: FORMATOS 12H ---
-                pl.col("clean_time").str.to_time("%I:%M:%S %p", strict=False), # 02:30:00 pm
-                pl.col("clean_time").str.to_time("%I:%M %p", strict=False),    # 02:30 pm
-
-                # --- GRUPO 3: LOS MUTANTES (Tus errores actuales) ---
-                # Caso: "21:40:00 pm" (Militar + PM). 
-                # Usamos %H (24h) pero le decimos que ignore el %p al final
+                pl.col("clean_time").str.to_time("%H:%M:%S", strict=False),
+                pl.col("clean_time").str.to_time("%H:%M", strict=False),
+                pl.col("clean_time").str.to_time("%I:%M:%S %p", strict=False),
+                pl.col("clean_time").str.to_time("%I:%M %p", strict=False),
                 pl.col("clean_time").str.to_time("%H:%M:%S %p", strict=False),
-                pl.col("clean_time").str.to_time("%H:%M %p", strict=False),
             ])
+            .fill_null(pl.lit("09:00:00").str.to_time("%H:%M:%S"))
         )
     )
     return hora
