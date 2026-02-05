@@ -142,6 +142,40 @@ def tratar_hora(lf, col_obj: str):
     )
     return hora
 
+def tratar_tipo_de_servicio(lf, col_obj: str):
+    clean_tipo_expr = (
+        texto(col_obj)
+    )
+    
+    tipo_servicio = (
+        lf
+        .with_columns(clean_tipo_de_servicio = clean_tipo_expr)
+        .with_columns(
+            final_tipo_de_servicio = pl.when(pl.col("clean_tipo_de_servicio") == "") # Si quedó vacío tras limpiar
+                                      .then(pl.lit("se desconoce"))                     # Poner "se desconoce"
+                                      .otherwise(pl.col("clean_tipo_de_servicio")) # Si no, es el nombre
+                                      .fill_null(pl.lit("se desconoce"))                 # Si es NULL, poner "se desconoce"
+        )
+    )
+    return tipo_servicio
+
+def causa(lf, col_obj: str):
+    clean_causa_expr = (
+        texto(col_obj)
+        .str.replace("na", "se desconoce")
+    )
+    
+    causa = (
+        lf
+        .with_columns(clean_causa = clean_causa_expr)
+        .with_columns(
+            final_causa = pl.when(pl.col("clean_causa") == "") # Si quedó vacío tras limpiar
+                          .then(pl.lit("se desconoce"))              # Poner "se desconoce"
+                          .otherwise(pl.col("clean_causa"))    # Si no, es el nombre
+                          .fill_null(pl.lit("se desconoce"))        # Si es NULL, poner "se desconoce"
+        )
+    )
+    return causa
 
 # ========================================
 # Pipeline Principal
@@ -151,6 +185,8 @@ lf = (
     .pipe(tratar_cecom, "CECOM")
     .pipe(tratar_fecha, "FECHA")
     .pipe(tratar_hora, "HORA_DE_LLAMADA")
+    .pipe(tratar_tipo_de_servicio, "TIPO_DE_SERVICIO")
+    .pipe(causa, "CAUSA")
 )
 
 lf_cecom = auditar_errores(
@@ -168,11 +204,28 @@ lf_fecha = auditar_errores(
 )
 
 
-df_limpio = auditar_errores(
+lf_hora = auditar_errores(
     lf_fecha,
     candidate_col="final_time", 
     target_name="HORA_DE_LLAMADA", 
     evidence_col="clean_time"
 )
 
-log.debug(df_limpio.collect())
+
+lf_tipo_de_servicio = auditar_errores(
+    lf_hora,
+    candidate_col="final_tipo_de_servicio", 
+    target_name="TIPO_DE_SERVICIO",
+    evidence_col="clean_tipo_de_servicio"
+)
+
+
+lf_causa = auditar_errores(
+    lf_tipo_de_servicio,
+    candidate_col="final_causa", 
+    target_name="CAUSA",
+    evidence_col="clean_causa"
+)
+
+
+log.debug(lf_causa.select("CAUSA").unique().collect())
