@@ -175,6 +175,9 @@ def tratar_causa(lf, col_obj: str):
     )
     return causa
 
+def tratar_resultado(lf, col_obj: str):
+    return col_texto(lf, col_obj)
+
 # ========================================
 # Pipeline Principal
 # ========================================
@@ -252,8 +255,19 @@ lf_hora_en_base = (
     )
 )
 
+lf_resultado = (
+    lf_hora_en_base.pipe(tratar_resultado, "RESULTADO")
+    .pipe(
+        auditar_errores,
+        candidate_col="final_text", 
+        target_name="RESULTADO",
+        evidence_col="clean_text"
+    )
+)
+
+
 lf_causa = (
-    lf_hora_en_base.pipe(tratar_causa, "CAUSA")
+    lf_resultado.pipe(tratar_causa, "CAUSA")
     .pipe(
         auditar_errores,
         candidate_col="final_causa", 
@@ -263,4 +277,4 @@ lf_causa = (
 )
 
 
-log.debug(lf_causa.select("CAUSA").unique().collect())
+log.debug(lf_causa.select("RESULTADO").unique().collect())
