@@ -1,0 +1,71 @@
+{
+  "pacientes": [
+    {
+      "id": "P001",
+      "nombre": "Juan Pérez",
+      "sangre": "O+",
+      "alergias": ["Penicilina"]
+    },
+    {
+      "id": "P002",
+      "nombre": "María López",
+      "sangre": "A-",
+      "alergias": []
+    },
+    {
+      "id": "P003",
+      "nombre": "Carlos Hernández",
+      "sangre": "B+",
+      "alergias": ["Aspirina", "Lácteos"]
+    },
+    {
+      "id": "P004",
+      "nombre": "Ana Rodríguez",
+      "sangre": "AB+",
+      "alergias": ["Mariscos"]
+    },
+    {
+      "id": "P005",
+      "nombre": "Luis Gómez",
+      "sangre": "O-",
+      "alergias": []
+    }
+  ],
+  "expedientes": [
+    {
+      "id": "EXP-001",
+      "id_paciente": "P001",
+      "fecha": "2026-02-01",
+      "ruta_foto": "temp_expedientes/EXP-001.jpg",
+      "estado": "pendiente_digitalizacion"
+    },
+    {
+      "id": "EXP-002",
+      "id_paciente": "P002",
+      "fecha": "2026-02-01",
+      "ruta_foto": "temp_expedientes/EXP-002.jpg",
+      "estado": "procesado"
+    },
+    {
+      "id": "EXP-003",
+      "id_paciente": "P003",
+      "fecha": "2026-02-02",
+      "ruta_foto": "temp_expedientes/EXP-003.jpg",
+      "estado": "pendiente_digitalizacion"
+    },
+    {
+      "id": "EXP-004",
+      "id_paciente": "P004",
+      "fecha": "2026-02-02",
+      "ruta_foto": "temp_expedientes/EXP-004.jpg",
+      "estado": "procesado"
+    },
+    {
+      "id": "EXP-005",
+      "id_paciente": "P005",
+      "fecha": "2026-02-03",
+      "ruta_foto": "temp_expedientes/EXP-005.jpg",
+      "estado": "pendiente_digitalizacion"
+    }
+  ]
+}
